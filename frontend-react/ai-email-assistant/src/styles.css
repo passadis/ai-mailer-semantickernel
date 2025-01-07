@@ -1,0 +1,125 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f8fc;
+    color: #333;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #004aad;
+    margin-bottom: 20px;
+  }
+  
+  /* Logo Icon */
+  .logo {
+    display: block;
+    margin: 0 auto 10px auto;
+    width: 120px;
+    height: 50px;
+  }
+  
+  label {
+    display: block;
+    margin-top: 15px;
+    font-size: 1rem;
+    color: #004aad;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #cbd5e0;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    height: 100px;
+  }
+  
+  button {
+    display: inline-block;
+    background-color: #004aad;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  
+  button:hover {
+    background-color: #003680;
+  }
+  
+  /* Status Messages */
+  .status {
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+  }
+  
+  .status.success {
+    background-color: #e6f4ea;
+    color: #2f855a;
+  }
+  
+  .status.error {
+    background-color: #fcebea;
+    color: #c53030;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .container {
+      padding: 15px;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  }
+  
+  /* Chat Display Area */
+  .chat-display {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f1faff;
+    border: 1px solid #cbd5e0;
+    border-radius: 5px;
+    font-size: 1rem;
+    white-space: pre-wrap;
+  }
+  
+  textarea.editable-draft {
+    background-color: #f7fafc;
+  }
+  
+  /* Footer (Optional) */
+  .footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
