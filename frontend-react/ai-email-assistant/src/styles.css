@@ -1,3 +1,55 @@
+/* Add styles for icons */
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon input {
+  padding-right: 30px; /* Adjust to give space for the icon */
+}
+
+.input-with-icon .icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #004aad;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button .icon {
+  margin-right: 5px;
+}
+
+/* Adjust spinner styles */
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loading-spinner .icon {
+  margin-bottom: 10px;
+}
+
+/* Adjust status styles to include icons */
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status .icon {
+  margin-right: 10px;
+}
+
+/* Keep the rest of your existing styles */
+
+
 /* General Styles */
 body {
     font-family: 'Arial', sans-serif;

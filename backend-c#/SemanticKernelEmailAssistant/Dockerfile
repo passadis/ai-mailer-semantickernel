@@ -3,6 +3,8 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
+# Copy the certificate to the container
+# COPY advicebackend.pfx /app/advicebackend.pfx
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src

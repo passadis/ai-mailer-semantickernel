@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import logo from './logo1.png';
 
 const PinAuth = ({ children }) => {
   const [pin, setPin] = useState('');
@@ -57,7 +58,7 @@ const PinAuth = ({ children }) => {
         sessionStorage.setItem('isAuthorized', 'true');
         setError('');
       } else {
-        setAttempts(prev => prev + 1);
+        setAttempts((prev) => prev + 1);
         sessionStorage.setItem('lastAttemptTime', Date.now().toString());
         setError('Invalid PIN. Please try again.');
         
@@ -90,6 +91,7 @@ const PinAuth = ({ children }) => {
         width: '100%',
         maxWidth: '400px'
       }}>
+        <img src={logo} alt="Logo" style={{ display: 'block', margin: '0 auto 1rem', width: '100px' }} />
         <h2 style={{
           marginBottom: '1.5rem',
           textAlign: 'center',

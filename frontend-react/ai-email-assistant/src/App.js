@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane, faSearch, faEnvelope, faSpinner, faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import logo from './logo1.png';
 import './styles.css';
 import PinAuth from './Components/PinAuth'; // Import the PinAuth component
@@ -103,97 +105,110 @@ function App() {
 
   return (
     <PinAuth>
-    <div className="container">
-      {/* Logo */}
-      <img src={logo} alt="Logo" className="logo" />
+      <div className="container">
+        {/* Logo */}
+        <img src={logo} alt="Logo" className="logo" />
 
-      {/* Title */}
-      <h1>AI Email Assistant</h1>
+        {/* Title */}
+        <h1>AI Email Assistant</h1>
 
-      {/* Input Form */}
-      <label>Recipient Email:</label>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Enter recipient's email"
-      />
-
-      <label>Subject:</label>
-      <input
-        type="text"
-        value={subject}
-        onChange={(e) => setSubject(e.target.value)}
-        placeholder="Enter email subject"
-      />
-
-      <label>Description:</label>
-      <textarea
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        placeholder="Enter a brief description of the email"
-      />
-
-      {loading ? (
-        <div className="loading-spinner">
-          <div className="spinner"></div>
-          <p>Processing, please wait...</p>
-        </div>
-      ) : (
-        <button onClick={handleGenerateDraft}>Generate Draft</button>
-      )}
-
-      {/* AI Generated Draft */}
-      {draft && (
-        <div className="chat-display">
-          <h2>AI Draft:</h2>
-          <textarea
-            className="editable-draft"
-            value={draft}
-            onChange={(e) => setDraft(e.target.value)}
+        {/* Input Form */}
+        <label>Recipient Email:</label>
+        <div className="input-with-icon">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter recipient's email"
           />
-          <button onClick={handleSendEmail} disabled={loading}>
-            Approve and Send
+          <FontAwesomeIcon icon={faEnvelope} className="icon" />
+        </div>
+
+        <label>Subject:</label>
+        <input
+          type="text"
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
+          placeholder="Enter email subject"
+        />
+
+        <label>Description:</label>
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Enter a brief description of the email"
+        />
+
+        {loading ? (
+          <div className="loading-spinner">
+            <FontAwesomeIcon icon={faSpinner} spin size="2x" />
+            <p>Processing, please wait...</p>
+          </div>
+        ) : (
+          <button onClick={handleGenerateDraft}>
+            <FontAwesomeIcon icon={faPaperPlane} /> Generate Draft
           </button>
-        </div>
-      )}
+        )}
 
-      {/* Search Form */}
-      <label>Search for Similar Text:</label>
-      <input
-        type="text"
-        value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value)}
-        placeholder="Enter text to search for similar entries"
-      />
-      <button onClick={handleSearch}>Search</button>
+        {/* AI Generated Draft */}
+        {draft && (
+          <div className="chat-display">
+            <h2>AI Draft:</h2>
+            <textarea
+              className="editable-draft"
+              value={draft}
+              onChange={(e) => setDraft(e.target.value)}
+            />
+            <button onClick={handleSendEmail} disabled={loading}>
+              <FontAwesomeIcon icon={faCheckCircle} /> Approve and Send
+            </button>
+          </div>
+        )}
 
-      {/* Search Results */}
-      {searchResults.length > 0 && (
-        <div className="search-results">
-          <h2>Search Results:</h2>
-          <ul>
-            {searchResults.map((result, index) => (
-              <li key={index}>
-                <strong>Text:</strong> {result.inputText} <br />
-                <strong>Similarity:</strong> {result.similarity.toFixed(2)}
-              </li>
-            ))}
-          </ul>
+        {/* Search Form */}
+        <label>Search for Similar Text:</label>
+        <div className="input-with-icon">
+          <input
+            type="text"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            placeholder="Enter text to search for similar entries"
+          />
+          <FontAwesomeIcon icon={faSearch} className="icon" />
         </div>
-      )}
+        <button onClick={handleSearch}>
+          <FontAwesomeIcon icon={faSearch} /> Search
+        </button>
 
-      {/* Status Display */}
-      {status && (
-        <div
-          className={`status ${
-            status.includes('successfully') ? 'success' : 'error'
-          }`}
-        >
-          {status}
-        </div>
-      )}
-    </div>
+        {/* Search Results */}
+        {searchResults.length > 0 && (
+          <div className="search-results">
+            <h2>Search Results:</h2>
+            <ul>
+              {searchResults.map((result, index) => (
+                <li key={index}>
+                  <strong>Text:</strong> {result.inputText} <br />
+                  <strong>Similarity:</strong> {result.similarity.toFixed(2)}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Status Display */}
+        {status && (
+          <div
+            className={`status ${
+              status.includes('successfully') ? 'success' : 'error'
+            }`}
+          >
+            <FontAwesomeIcon
+              icon={status.includes('successfully') ? faCheckCircle : faTimesCircle}
+            />{' '}
+            {status}
+          </div>
+        )}
+      </div>
     </PinAuth>
   );
 }
