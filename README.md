@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=azure,react,cs,dotnet,postgres,githubactions" />
+    <img src="https://skillicons.dev/icons?i=azure,react,cs,dotnet,postgres,github" />
   </a>
 </p>
 
@@ -63,7 +63,7 @@ The system consists of three main components:
 3. Set up Microsoft Graph API permissions
 4. Configure environment variables for both frontend and backend
 
-### Environment Variables
+### Environment Variables Sample
 ```env
 AZURE_OPENAI_ENDPOINT=
 AZURE_OPENAI_KEY=
@@ -92,4 +92,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - Thanks to the Semantic Kernel team for the amazing framework
 - NEON team for the serverless PostgreSQL service
-- The Microsoft Graph API team for the comprehensive email integration capabilities
+
+
+  <img width="760" alt="architect" src="https://github.com/user-attachments/assets/082b75fc-1bc3-4d27-84a9-3672a1e83191" />
+
