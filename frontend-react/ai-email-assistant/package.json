@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@shadcn/ui": "^0.0.4",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
@@ -10,6 +11,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-scripts": "5.0.1",
+    "shadcn-ui": "^0.9.4",
     "tailwindcss": "^3.4.17",
     "web-vitals": "^4.2.4"
   },

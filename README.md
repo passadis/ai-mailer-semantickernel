@@ -1,62 +1,95 @@
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=azure,vscode,cs,react,tailwind,githubactions,postgres" />
+    <img src="https://skillicons.dev/icons?i=azure,react,cs,dotnet,postgres,githubactions" />
   </a>
 </p>
 
-<h1 align="center">Semantic Kernel-Email Assistant with NEON Serverless memory store</h1>
+<h1 align="center">AI-Powered Email Assistant with Semantic Kernel and NEON DB</h1>
 
 ## Introduction
 
-Today, we’ll explore how to integrate Azure AI Containers into our applications running on Azure Kubernetes Service (AKS). Azure AI Containers enable you to harness the power of Azure’s AI services directly within your AKS environment, giving you complete control over where your data is processed. By streamlining the deployment process and ensuring consistency, Azure AI Containers simplify the integration of cutting-edge AI capabilities into your applications. Whether you’re developing tools for education, enhancing accessibility, or creating innovative user experiences, this guide will show you how to seamlessly incorporate Azure’s AI Containers into your web apps running on AKS.
+This project showcases a modern email assistant that leverages the power of Azure's Semantic Kernel, Microsoft Graph API, and NEON serverless PostgreSQL to create an intelligent email drafting and management system. The application can generate email drafts based on natural language descriptions, send them via Microsoft Graph API, and maintain a searchable history of both drafts and sent emails using vector embeddings for similarity search.
 
-**Azure AI Containers**
+## Technologies Used
 
-Azure AI services provides several Docker containers that let you use the same APIs that are available in Azure, on-premises. Using these containers gives you the flexibility to bring Azure AI services closer to your data for compliance, security or other operational reasons. Container support is currently available for a subset of Azure AI services.
-
-Azure AI Containers offer:
-
-   - Immutable infrastructure: Consistent and reliable system parameters for DevOps teams, with flexibility to adapt and avoid configuration drift.
-   - Data control: Choose where data is processed, essential for data residency or security requirements.
-   - Model update control: Flexibility in versioning and updating deployed models.
-   - Portable architecture: Deploy on Azure, on-premises, or at the edge, with Kubernetes support.
-   - High throughput/low latency: Scale for demanding workloads by running Azure AI services close to data and logic.
-   - Scalability: Built on scalable cluster technology like Kubernetes for high availability and adaptable performance
-
-## Project Build
-
-### Frontend
-
-- **Python FLlask Web UI**: The frontend of our system, a simple Text Input and "Submit" button
-
-### Backend
-
-- **API Endpoint**: The backend is hosted into AKS with the Sentiment Analysis Container and communicates with a Language AI Resource for billing and metrics.
-
-
-### Deployment and Hosting
-
-- **Docker Containers**: Both the frontend and backend components are containerized, the API Backend is called directly via mcr.microsoft.com and the Frontend is pushed in Azure Container Registry.
-- **Azure Container Registry**: The Docker image is pushed to Azure Container Registry, from where they are managed and deployed.
+- **Frontend**: React with modern UI components
+- **Backend**: .NET with Semantic Kernel
+- **Database**: NEON Serverless PostgreSQL for vector embeddings storage
+- **Authentication**: Microsoft Graph API for email integration
+- **AI Features**: Azure OpenAI for text generation and embeddings
+- **Vector Search**: Similarity search functionality using PostgreSQL vector operations
 
 ## Features
 
-- Scalable Environment of AKS to handle various trafiic needs.
-- Simple UI build in Python.
-- Secure backend API within the AKS Cluster.
-- Docker containerization for consistent deployment and scalability.
-- Integration with Azure services for robust and reliable application performance.
-- Latest Sentiment Analysis Image for precise analysis.
-
-## Conclusion
-
-By leveraging these technologies, you gain granular control over your data and model deployments, while maintaining the scalability and portability essential for modern applications. Remember, this is just the starting point. As you delve deeper, consider the specific requirements of your project and explore the vast possibilities that Azure AI Containers unlock. Embrace the power of AI within your AKS deployments, and you’ll be well on your way to building innovative, intelligent solutions that redefine what’s possible in the cloud.
-## Instructions
-**Follow the Blog for Detailed Instructions**: For step-by-step guidance, visit [Azure AI Services on AKS](https://www.cloudblogger.eu/2024/05/17/azure-ai-cloud-native-on-aks/).
-
-## Contribution
-
-Contributions are welcome! If you have suggestions or improvements, feel free to fork the repository, make your changes, and submit a pull request.
+- Natural language to email draft generation using Semantic Kernel
+- Direct email sending through Microsoft Graph API integration
+- Vector embedding storage of email content in NEON PostgreSQL
+- Similarity search across historical emails and drafts
+- Modern React UI with responsive design
+- Secure authentication and authorization
+- Scalable serverless database architecture
 
 ## Architecture
-![architect-aiaks-1](https://github.com/passadis/aks-aicontainers/assets/53148138/eb1b0e05-5d61-4e91-b9a6-7b751429b4b2)
+
+The system consists of three main components:
+
+1. **React Frontend**
+   - Modern UI for email composition and management
+   - Integration with backend services
+   - Real-time draft preview and editing
+
+2. **Semantic Kernel Backend**
+   - Email draft generation using AI models
+   - Vector embedding creation for email content
+   - Graph API integration for email sending
+   - API endpoints for frontend communication
+
+3. **NEON PostgreSQL Storage**
+   - Serverless vector database for embeddings
+   - Efficient similarity search capabilities
+   - Scalable storage solution
+
+## Setup and Deployment
+
+### Prerequisites
+- Azure subscription with OpenAI access
+- NEON PostgreSQL database
+- Microsoft 365 developer account
+- Node.js and .NET SDK
+
+### Configuration
+1. Set up Azure OpenAI service
+2. Configure NEON PostgreSQL database
+3. Set up Microsoft Graph API permissions
+4. Configure environment variables for both frontend and backend
+
+### Environment Variables
+```env
+AZURE_OPENAI_ENDPOINT=
+AZURE_OPENAI_KEY=
+NEON_CONNECTION_STRING=
+MICROSOFT_GRAPH_CLIENT_ID=
+MICROSOFT_GRAPH_CLIENT_SECRET=
+```
+
+## Future Enhancements
+
+- Template management for common email types
+- Advanced email analytics and insights
+- Multi-language support
+- Batch email processing
+- Custom email classification
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Thanks to the Semantic Kernel team for the amazing framework
+- NEON team for the serverless PostgreSQL service
+- The Microsoft Graph API team for the comprehensive email integration capabilities

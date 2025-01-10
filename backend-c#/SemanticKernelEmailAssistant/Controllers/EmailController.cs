@@ -14,12 +14,14 @@ namespace SemanticKernelEmailAssistant.Controllers
         private readonly OpenAISkill _openAISkill;
         private readonly ILogger<EmailController> _logger;
         private readonly EmailService _emailService;
+        private readonly EmbeddingService _embeddingService;
 
-        public EmailController(OpenAISkill openAISkill, ILogger<EmailController> logger, EmailService emailService)
+        public EmailController(OpenAISkill openAISkill, ILogger<EmailController> logger, EmailService emailService, EmbeddingService embeddingService)
         {
             _openAISkill = openAISkill;
             _logger = logger;
             _emailService = emailService;
+            _embeddingService = embeddingService;
         }
 
         [HttpPost("generate-email")]
@@ -27,44 +29,56 @@ namespace SemanticKernelEmailAssistant.Controllers
         {
             _logger.LogInformation("Received email generation request: Subject - {Subject}, Description - {Description}",
                 request.Subject, request.Description);
+
             try
             {
+                // Generate draft
                 var emailDraft = await _openAISkill.GenerateEmailDraftAsync(request.Subject, request.Description);
-               
-                _logger.LogInformation("Generated email draft: {Draft}", emailDraft);
+
+                // Generate embedding
+                var embedding = await _embeddingService.GenerateEmbeddingAsync(emailDraft);
+
+                // Store draft embedding
+                await _embeddingService.StoreEmbeddingAsync(emailDraft, embedding, "draft");
+
+                _logger.LogInformation("Generated and stored draft embedding: {Draft}", emailDraft);
                 return Ok(new { draft = emailDraft });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error generating email draft");
+                _logger.LogError(ex, "Error generating or storing draft embedding");
                 return StatusCode(500, "An error occurred while processing your request.");
             }
         }
+
          
         [HttpPost("send")]
         public async Task<IActionResult> SendEmail([FromBody] SendEmailRequest request)
         {
             _logger.LogInformation("Received email send request: Subject - {Subject}, Recipients - {Recipients}",
                 request.Subject, string.Join(", ", request.Recipients));
+
             try
             {
-                await _emailService.SendEmailAsync(
-                    request.Subject,
-                    request.Body,
-                    request.Recipients
-                );
-               
-                _logger.LogInformation("Email sent successfully to {Recipients}", 
-                    string.Join(", ", request.Recipients));
+                // Send email
+                await _emailService.SendEmailAsync(request.Subject, request.Body, request.Recipients);
+
+                // Generate embedding
+                var embedding = await _embeddingService.GenerateEmbeddingAsync(request.Body);
+
+                // Store sent email embedding
+                await _embeddingService.StoreEmbeddingAsync(request.Body, embedding, "sent");
+
+                _logger.LogInformation("Sent email and stored embedding: {Body}", request.Body);
                 return Ok(new { message = "Email sent successfully" });
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Failed to send email to {Recipients}", 
-                    string.Join(", ", request.Recipients));
+                _logger.LogError(ex, "Failed to send email and store embedding");
                 return StatusCode(500, new { error = "Failed to send email" });
             }
         }
+
     }
 
     public class EmailRequest
