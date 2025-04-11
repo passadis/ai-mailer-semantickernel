@@ -40,10 +40,7 @@ builder.Services.AddSingleton(sp =>
     return new AzureOpenAITextEmbeddingGenerationService(
         deploymentName: configuration["AzureOpenAI:TextEmbeddingDeploymentName"]!, // Add your embedding deployment name here
         endpoint: configuration["AzureOpenAI:Endpoint"]!,                         // Your Azure OpenAI endpoint
-        apiKey: configuration["AzureOpenAI:ApiKey"]!,                             // Your Azure OpenAI API key
-        modelId: "text-embedding-ada-002",                                        // Your model name, adjust if different
-        httpClient: new HttpClient(),                                             // Optional custom HttpClient
-        dimensions: 1536                                                          // Embedding dimensions for text-embedding-ada-002
+        apiKey: configuration["AzureOpenAI:ApiKey"]!,                             // Null Embedding dimensions for text-embedding-ada-002
     );
 });
 
