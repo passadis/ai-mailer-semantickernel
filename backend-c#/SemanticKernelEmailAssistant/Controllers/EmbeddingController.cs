@@ -27,7 +27,7 @@ public class EmbeddingController : ControllerBase
             // Store the embedding in the database
             await _embeddingService.StoreEmbeddingAsync(request.Input, embedding, "defaultType");
 
-            _logger.LogInformation("Embedding successfully generated and stored for input: {Input}", request.Input);
+            _logger.LogInformation("Embedding successfully generated and stored for input");
             return Ok(new { message = "Embedding generated and stored successfully." });
         }
         catch (Exception ex)
