@@ -18,7 +18,7 @@ public class EmbeddingController : ControllerBase
     [HttpPost("generate-and-store")]
     public async Task<IActionResult> GenerateAndStoreEmbedding([FromBody] EmbeddingRequest request)
     {
-        _logger.LogInformation("Received embedding request: {Input}", request.Input);
+        _logger.LogInformation("Received embedding request");
         try
         {
             // Generate the embedding
@@ -32,7 +32,7 @@ public class EmbeddingController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error generating or storing embedding for input: {Input}", request.Input);
+            _logger.LogError(ex, "Error generating or storing embedding for input");
             return StatusCode(500, "An error occurred while processing your request.");
         }
     }
