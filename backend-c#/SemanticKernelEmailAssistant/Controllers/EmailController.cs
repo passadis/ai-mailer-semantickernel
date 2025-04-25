@@ -53,10 +53,14 @@ namespace SemanticKernelEmailAssistant.Controllers
 
          
         [HttpPost("send")]
+        var sanitizedSubject = request.Subject.Replace("\n", "").Replace("\r", "");
+        var sanitizedRecipients = string.Join(", ", request.Recipients).Replace("\n", "").Replace("\r", "");
+
+
+
         public async Task<IActionResult> SendEmail([FromBody] SendEmailRequest request)
         {
-            _logger.LogInformation("Received email send request)",
-                request.Subject, string.Join(", ", request.Recipients));
+            logger.LogInformation("Email Subject: {Subject}, Recipients: {Recipients}", sanitizedSubject, sanitizedRecipients);
 
             try
             {
