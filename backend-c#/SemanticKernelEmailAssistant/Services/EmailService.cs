@@ -87,11 +87,11 @@ public class EmailService
                     SaveToSentItems = true
                 });
 
-            _logger.LogInformation("Email sent successfully to {Recipients}", string.Join(", ", recipients));
+            _logger.LogInformation("Email sent successfully");
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error sending email to {Recipients}", string.Join(", ", recipients));
+            _logger.LogError(ex, "Error sending email");
             throw;
         }
     }
