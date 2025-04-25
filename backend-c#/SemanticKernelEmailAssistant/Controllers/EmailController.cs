@@ -27,7 +27,7 @@ namespace SemanticKernelEmailAssistant.Controllers
         [HttpPost("generate-email")]
         public async Task<IActionResult> GenerateEmailDraft([FromBody] EmailRequest request)
         {
-            _logger.LogInformation("Received email generation request: Subject - {Subject}, Description - {Description}",
+            _logger.LogInformation("Received email generation request"),
                 request.Subject, request.Description);
 
             try
@@ -41,7 +41,7 @@ namespace SemanticKernelEmailAssistant.Controllers
                 // Store draft embedding
                 await _embeddingService.StoreEmbeddingAsync(emailDraft, embedding, "draft");
 
-                _logger.LogInformation("Generated and stored draft embedding: {Draft}", emailDraft);
+                _logger.LogInformation("Generated and stored draft embedding");
                 return Ok(new { draft = emailDraft });
             }
             catch (Exception ex)
@@ -55,7 +55,7 @@ namespace SemanticKernelEmailAssistant.Controllers
         [HttpPost("send")]
         public async Task<IActionResult> SendEmail([FromBody] SendEmailRequest request)
         {
-            _logger.LogInformation("Received email send request: Subject - {Subject}, Recipients - {Recipients}",
+            _logger.LogInformation("Received email send request)",
                 request.Subject, string.Join(", ", request.Recipients));
 
             try
@@ -69,7 +69,7 @@ namespace SemanticKernelEmailAssistant.Controllers
                 // Store sent email embedding
                 await _embeddingService.StoreEmbeddingAsync(request.Body, embedding, "sent");
 
-                _logger.LogInformation("Sent email and stored embedding: {Body}", request.Body);
+                _logger.LogInformation("Sent email and stored embedding");
                 return Ok(new { message = "Email sent successfully" });
             }
             catch (Exception ex)
